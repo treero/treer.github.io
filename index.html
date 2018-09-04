@@ -229,6 +229,930 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/作业15/题123/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/04/作业15/题123/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-04T16:33:23+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>题123</title>
+        <style>
+        .alert-action{
+            width: 50px;
+            height: 20px;
+            background-color: #d33;
+        }
+
+        .alert-cell {
+            width: 300px;
+            border: black 1px solid;
+            background-color: white;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+    </head>
+    <body>
+        <script>
+        var log = console.log.bind(console)
+
+        var e = function(selector) {
+            var element = document.querySelector(selector)
+            if (element == null) {
+                var s = `元素没找到，选择器 ${selector} 没有找到或者 js 没有放在 body 里`
+                alert(s)
+            } else {
+                return element
+            }
+        }
+
+        var appendHtml = (element, html) => element.insertAdjacentHTML('beforeend', html)
+
+        var templateAlert = (title, message) => {
+            var t = `
+                <div class="alert-cell" id="id-div-alert-container">
+                    <h1 class="alert-title">${title}</h1>
+                    <input class="alert-message" id="id-input">${message}</input>
+                    <br>
+                    <button class="alert-ok">ok</button>
+                    <button class="alert-cancel">cancel</button>
+                </div>
+            `
+            return t
+        }
+
+        var insertAlert = (title, message) => {
+            var container = e('body')
+            var html = templateAlert(title, message)
+            appendHtml(container, html)
+        }
+
+        var GuaAlert = function(title, message) {
+            insertAlert(title, message)
+            var container = e('#id-div-alert-container')
+            container.addEventListener('click', (event) => {
+                var self = event.target
+                if (self.classList.contains('alert-ok')) {
+                    log('button click ok')
+                    var alert = self.closest('.alert-cell')
+                    alert.remove()
+                }
+            })
+        }
+
+        // 作业 2
+        //
+        var GuaAlert2 = function(title, message, callback) {
+            insertAlert(title, message)
+            var container = e('#id-div-alert-container')
+            container.addEventListener('click', (event) => {
+                var self = event.target
+                var alert = self.closest('.alert-cell')
+                if (self.classList.contains('alert-ok')) {
+                    log('button click ok')
+                    callback(true)
+                    alert.remove()
+                }else if (self.classList.contains('alert-cancel')) {
+                    callback(false)
+                    log('button click cancel')
+                    alert.remove()
+                }
+
+            })
+
+        }
+        // 作业 3
+        //
+        var GuaPrompt = function(title, callback) {
+            insertAlert(title, "")
+            var container = e('#id-div-alert-container')
+            container.addEventListener('click', (event) => {
+                var self = event.target
+                var alert = self.closest('.alert-cell')
+                var input = e('#id-input')
+                var value = input.value
+                if (self.classList.contains('alert-ok')) {
+                    log('button click ok')
+                    callback(true, value)
+                    alert.remove()
+                }else if (self.classList.contains('alert-cancel')) {
+                    callback(false)
+                    log('button click cancel')
+                    alert.remove()
+                }
+
+            })
+        }
+
+
+        var __main = () => {
+            // GuaAlert('Good job!', "You clicked the button!")
+            // GuaAlert2('Good job!', "You clicked the button!", (bool) => {log(bool)})
+            GuaPrompt('Hi!', function(clickOk, input) {
+                if (clickOk == true) {
+                    log('input',input)
+                    return input
+                }
+            })
+        }
+
+        __main()
+
+        </script>
+    </body>
+</html>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/作业15/guaAlert2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/04/作业15/guaAlert2/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-04T16:33:23+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            var log = console.log.bind(console)
+
+var e = function(selector) {
+    var element = document.querySelector(selector)
+    if (element == null) {
+        var s = `元素没找到，选择器 ${selector} 没有找到或者 js 没有放在 body 里`
+        alert(s)
+    } else {
+        return element
+    }
+}
+
+var appendHtml = (element, html) => element.insertAdjacentHTML('beforeend', html)
+
+var templateAlert = (title, message) => {
+    var t = `
+        <div class="alert-cell" id="id-div-alert-container">
+            <h1 class="alert-title">${title}</h1>
+            <br>
+            <span class="alert-button" data-id="index">${message}</span>
+            <button class="alert-action" data-id="-1">cancel</button>
+        </div>
+    `
+    return t
+}
+
+var insertAlert = (title, message) => {
+    var container = e('body')
+    var html = templateAlert(title, message)
+    appendHtml(container, html)
+}
+
+var insertActions = (actions) => {
+    for (var i = 0; i < actions.length; i++) {
+        var action = actions[i]
+        var container = e('.alert-button')
+        var html = `<button class="alert-action" data-id="${i}">${action}</button>`
+        appendHtml(container, html)
+    }
+}
+
+// 作业 4
+//
+var GuaActions = function(title, actions, callback) {
+    insertAlert(title, "")
+    insertActions(actions)
+    var container = e('#id-div-alert-container')
+    container.addEventListener('click', (event) => {
+        var self = event.target
+        // var alert = self.closest('.alert-cell')
+        var index = self.dataset.id
+        log('first', index)
+        callback(index)
+    })
+
+}
+
+var __main = () => {
+    GuaActions('hello', ['ok', 'fine', 'go'], function(index) {
+        // index 是下标, 具体如下
+        // index 如果是 -1 表明用户点击了 cancel
+        log(index)
+        if (index == -1) {
+            log('button click cancel')
+            var alert = e('.alert-cell')
+            alert.remove()
+        }
+    })
+}
+
+__main()
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/作业15/guaAlert/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/04/作业15/guaAlert/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-04T16:33:23+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            var log = console.log.bind(console)
+
+var e = function(selector) {
+    var element = document.querySelector(selector)
+    if (element == null) {
+        var s = `元素没找到，选择器 ${selector} 没有找到或者 js 没有放在 body 里`
+        alert(s)
+    } else {
+        return element
+    }
+}
+
+var appendHtml = (element, html) => element.insertAdjacentHTML('beforeend', html)
+
+var templateAlert = (title, message) => {
+    var t = `
+        <div class="alert-cell" id="id-div-alert-container">
+            <h1 class="alert-title">${title}</h1>
+            <input class="alert-message" id="id-input">${message}
+            <br>
+            <button class="alert-ok">ok</button>
+            <button class="alert-cancel">cancel</button>
+        </div>
+    `
+    return t
+}
+
+var insertAlert = (title, message) => {
+    var container = e('body')
+    var html = templateAlert(title, message)
+    appendHtml(container, html)
+}
+
+var GuaAlert = function(title, message) {
+    insertAlert(title, message)
+    var container = e('#id-div-alert-container')
+    container.addEventListener('click', (event) => {
+        var self = event.target
+        if (self.classList.contains('alert-ok')) {
+            log('button click ok')
+            var alert = self.closest('.alert-cell')
+            alert.remove()
+        }
+    })
+}
+
+// 作业 2
+//
+var GuaAlert2 = function(title, message, callback) {
+    /*
+    title 是 string
+    message 是 string
+    callback 是一个接受一个 bool 类型参数的函数
+
+    这个函数生成一个上课所说的弹窗插入页面
+    弹窗包含 title 作为标题 和 message 作为信息
+    还包含一个 OK 按钮 和一个 Cancel 按钮
+    点击 OK 按钮关闭弹窗, 调用 callback(true)
+    点击 Cancel 按钮关闭弹窗, 调用 callback(false)
+    */
+    insertAlert(title, message)
+    var container = e('#id-div-alert-container')
+    container.addEventListener('click', (event) => {
+        var self = event.target
+        var alert = self.closest('.alert-cell')
+        if (self.classList.contains('alert-ok')) {
+            log('button click ok')
+            callback(true)
+            alert.remove()
+        }else if (self.classList.contains('alert-cancel')) {
+            callback(false)
+            log('button click cancel')
+            alert.remove()
+        }
+
+    })
+
+}
+// 作业 3
+//
+var GuaPrompt = function(title, callback) {
+    /*
+    title 是 string
+    callback 是一个如下的函数
+    function(clickOk, input) {
+        // clickOk 是一个 bool 表明点击的是 OK 还是 Cancel
+        // input 是 string
+    }
+
+    这个函数生成一个上课所说的弹窗插入页面
+    弹窗包含 title 作为标题
+    包含一个 input 让用户输入信息
+    还包含一个 OK 按钮 和一个 Cancel 按钮
+    点击 OK 按钮关闭弹窗, 调用 callback(true, 输入的内容)
+    点击 Cancel 按钮关闭弹窗, 调用 callback(false)
+    */
+    insertAlert(title, "")
+    var container = e('#id-div-alert-container')
+    container.addEventListener('click', (event) => {
+        var self = event.target
+        var alert = self.closest('.alert-cell')
+        var input = e('#id-input')
+        var value = input.value
+        if (self.classList.contains('alert-ok')) {
+            log('button click ok')
+            callback(true, value)
+            alert.remove()
+        }else if (self.classList.contains('alert-cancel')) {
+            callback(false)
+            log('button click cancel')
+            alert.remove()
+        }
+
+    })
+}
+
+// 作业 4
+//
+var GuaActions = function(title, actions, callback) {
+    /*
+    title 是 string
+    actions 是一个包含 string 的数组
+    callback 是一个如下的函数
+    function(index) {
+        // index 是下标, 具体如下
+        // index 如果是 -1 表明用户点击了 cancel
+    }
+
+    这个函数生成一个弹窗页面
+    弹窗包含 title 作为标题
+    actions 里面的 string 作为标题生成按钮
+    弹窗还包含一个 Cancel 按钮
+    点击按钮的时候, 调用 callback(index)
+    */
+}
+
+var __main = () => {
+    // GuaAlert('Good job!', "You clicked the button!")
+    // GuaAlert2('Good job!', "You clicked the button!", (bool) => {log(bool)})
+    GuaPrompt('Hi!', function(clickOk, input) {
+        if (clickOk == true) {
+            log('input',input)
+            return input
+        }
+    })
+}
+
+__main()
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/作业15/题4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/04/作业15/题4/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-04T16:33:23+08:00">
+                2018-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>题4</title>
+        <style>
+        .alert-action{
+            width: 50px;
+            height: 20px;
+            background-color: #d33;
+        }
+
+        .alert-cell {
+            width: 300px;
+            border: black 1px solid;
+            background-color: white;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+    </head>
+    <body>
+        <script>
+        var log = console.log.bind(console)
+
+        var e = function(selector) {
+            var element = document.querySelector(selector)
+            if (element == null) {
+                var s = `元素没找到，选择器 ${selector} 没有找到或者 js 没有放在 body 里`
+                alert(s)
+            } else {
+                return element
+            }
+        }
+
+        var appendHtml = (element, html) => element.insertAdjacentHTML('beforeend', html)
+
+        var templateAlert = (title, message) => {
+            var t = `
+                <div class="alert-cell" id="id-div-alert-container">
+                    <h1 class="alert-title">${title}</h1>
+                    <br>
+                    <span class="alert-button" data-id="index">${message}</span>
+                    <button class="alert-action" data-id="-1">cancel</button>
+                </div>
+            `
+            return t
+        }
+
+        var insertAlert = (title, message) => {
+            var container = e('body')
+            var html = templateAlert(title, message)
+            appendHtml(container, html)
+        }
+
+        var insertActions = (actions) => {
+            for (var i = 0; i < actions.length; i++) {
+                var action = actions[i]
+                var container = e('.alert-button')
+                var html = `<button class="alert-action" data-id="${i}">${action}</button>`
+                appendHtml(container, html)
+            }
+        }
+
+        // 作业 4
+        //
+        var GuaActions = function(title, actions, callback) {
+            insertAlert(title, "")
+            insertActions(actions)
+            var container = e('#id-div-alert-container')
+            container.addEventListener('click', (event) => {
+                var self = event.target
+                // var alert = self.closest('.alert-cell')
+                var index = self.dataset.id
+                log('first', index)
+                callback(index)
+            })
+
+        }
+
+        var __main = () => {
+            GuaActions('hello', ['ok', 'fine', 'go'], function(index) {
+                // index 是下标, 具体如下
+                // index 如果是 -1 表明用户点击了 cancel
+                log(index)
+                if (index == -1) {
+                    log('button click cancel')
+                    var alert = e('.alert-cell')
+                    alert.remove()
+                }
+            })
+        }
+
+        __main()
+        </script>
+    </body>
+</html>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/我的/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -509,7 +1433,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

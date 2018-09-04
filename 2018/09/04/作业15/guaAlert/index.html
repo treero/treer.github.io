@@ -79,14 +79,17 @@
 
 
 
+<meta name="description" content="var log = console.log.bind(console)  var e = function(selector) {     var element = document.querySelector(selector)     if (element == null) {         var s = `元素没找到，选择器 ${selector} 没有找到或者 js 没有放在 bo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的">
-<meta property="og:url" content="http://yoursite.com/2018/09/04/我的/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/09/04/作业15/guaAlert/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="var log = console.log.bind(console)  var e = function(selector) {     var element = document.querySelector(selector)     if (element == null) {         var s = `元素没找到，选择器 ${selector} 没有找到或者 js 没有放在 bo">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-04T07:22:11.288Z">
+<meta property="og:updated_time" content="2017-12-19T16:21:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="var log = console.log.bind(console)  var e = function(selector) {     var element = document.querySelector(selector)     if (element == null) {         var s = `元素没找到，选择器 ${selector} 没有找到或者 js 没有放在 bo">
 
 
 
@@ -116,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/04/我的/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/04/作业15/guaAlert/"/>
 
 
 
 
 
-  <title>我的 | Hexo</title>
+  <title> | Hexo</title>
   
 
 
@@ -229,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/我的/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/作业15/guaAlert/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -246,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">我的</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -258,7 +261,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-04T15:22:11+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-04T16:33:23+08:00">
                 2018-09-04
               </time>
             
@@ -296,7 +299,155 @@
       
 
       
-        
+        var log = console.log.bind(console)
+
+var e = function(selector) {
+    var element = document.querySelector(selector)
+    if (element == null) {
+        var s = `元素没找到，选择器 ${selector} 没有找到或者 js 没有放在 body 里`
+        alert(s)
+    } else {
+        return element
+    }
+}
+
+var appendHtml = (element, html) => element.insertAdjacentHTML('beforeend', html)
+
+var templateAlert = (title, message) => {
+    var t = `
+        <div class="alert-cell" id="id-div-alert-container">
+            <h1 class="alert-title">${title}</h1>
+            <input class="alert-message" id="id-input">${message}
+            <br>
+            <button class="alert-ok">ok</button>
+            <button class="alert-cancel">cancel</button>
+        </div>
+    `
+    return t
+}
+
+var insertAlert = (title, message) => {
+    var container = e('body')
+    var html = templateAlert(title, message)
+    appendHtml(container, html)
+}
+
+var GuaAlert = function(title, message) {
+    insertAlert(title, message)
+    var container = e('#id-div-alert-container')
+    container.addEventListener('click', (event) => {
+        var self = event.target
+        if (self.classList.contains('alert-ok')) {
+            log('button click ok')
+            var alert = self.closest('.alert-cell')
+            alert.remove()
+        }
+    })
+}
+
+// 作业 2
+//
+var GuaAlert2 = function(title, message, callback) {
+    /*
+    title 是 string
+    message 是 string
+    callback 是一个接受一个 bool 类型参数的函数
+
+    这个函数生成一个上课所说的弹窗插入页面
+    弹窗包含 title 作为标题 和 message 作为信息
+    还包含一个 OK 按钮 和一个 Cancel 按钮
+    点击 OK 按钮关闭弹窗, 调用 callback(true)
+    点击 Cancel 按钮关闭弹窗, 调用 callback(false)
+    */
+    insertAlert(title, message)
+    var container = e('#id-div-alert-container')
+    container.addEventListener('click', (event) => {
+        var self = event.target
+        var alert = self.closest('.alert-cell')
+        if (self.classList.contains('alert-ok')) {
+            log('button click ok')
+            callback(true)
+            alert.remove()
+        }else if (self.classList.contains('alert-cancel')) {
+            callback(false)
+            log('button click cancel')
+            alert.remove()
+        }
+
+    })
+
+}
+// 作业 3
+//
+var GuaPrompt = function(title, callback) {
+    /*
+    title 是 string
+    callback 是一个如下的函数
+    function(clickOk, input) {
+        // clickOk 是一个 bool 表明点击的是 OK 还是 Cancel
+        // input 是 string
+    }
+
+    这个函数生成一个上课所说的弹窗插入页面
+    弹窗包含 title 作为标题
+    包含一个 input 让用户输入信息
+    还包含一个 OK 按钮 和一个 Cancel 按钮
+    点击 OK 按钮关闭弹窗, 调用 callback(true, 输入的内容)
+    点击 Cancel 按钮关闭弹窗, 调用 callback(false)
+    */
+    insertAlert(title, "")
+    var container = e('#id-div-alert-container')
+    container.addEventListener('click', (event) => {
+        var self = event.target
+        var alert = self.closest('.alert-cell')
+        var input = e('#id-input')
+        var value = input.value
+        if (self.classList.contains('alert-ok')) {
+            log('button click ok')
+            callback(true, value)
+            alert.remove()
+        }else if (self.classList.contains('alert-cancel')) {
+            callback(false)
+            log('button click cancel')
+            alert.remove()
+        }
+
+    })
+}
+
+// 作业 4
+//
+var GuaActions = function(title, actions, callback) {
+    /*
+    title 是 string
+    actions 是一个包含 string 的数组
+    callback 是一个如下的函数
+    function(index) {
+        // index 是下标, 具体如下
+        // index 如果是 -1 表明用户点击了 cancel
+    }
+
+    这个函数生成一个弹窗页面
+    弹窗包含 title 作为标题
+    actions 里面的 string 作为标题生成按钮
+    弹窗还包含一个 Cancel 按钮
+    点击按钮的时候, 调用 callback(index)
+    */
+}
+
+var __main = () => {
+    // GuaAlert('Good job!', "You clicked the button!")
+    // GuaAlert2('Good job!', "You clicked the button!", (bool) => {log(bool)})
+    GuaPrompt('Hi!', function(clickOk, input) {
+        if (clickOk == true) {
+            log('input',input)
+            return input
+        }
+    })
+}
+
+__main()
+
       
     </div>
     
@@ -320,8 +471,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/03/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/09/04/作业15/题4/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -330,7 +481,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/04/作业15/题4/" rel="prev" title="">
+              <a href="/2018/09/04/作业15/guaAlert2/" rel="prev" title="">
                  <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -384,8 +535,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -427,6 +587,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">${title}</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
